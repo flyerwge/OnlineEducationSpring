@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="flyerwge.eduservice.mapper.EduCourseMapper">
+
+    <!--    resultType:返回值形式-->
+    <select id="getTopCourse" resultType="flyerwge.eduservice.entity.EduCourse">
+        select * from edu_course  order by view_count desc limit #{nums}
+    </select>
+
+    <select id="getAllCourse" resultType="flyerwge.eduservice.entity.EduCourse">
+        select * from edu_course
+    </select>
+
+</mapper>
