@@ -5,6 +5,7 @@ import flyerwge.eduservice.entity.EduCourse;
 import flyerwge.eduservice.entity.EduCourseDescription;
 import flyerwge.eduservice.entity.EduSubject;
 import flyerwge.eduservice.entity.query.CourseInfoQuery;
+import flyerwge.eduservice.entity.query.CoursePublishQuery;
 import flyerwge.eduservice.entity.subject.CourseNum;
 import flyerwge.eduservice.mapper.EduCourseMapper;
 import flyerwge.eduservice.mapper.EduSubjectMapper;
@@ -110,5 +111,29 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
             courseNum.add(course);
         }
         return courseNum;
+    }
+
+    @Override
+    public void updateCourseInfo(CourseInfoQuery courseInfoQuery) {
+//        修改课程表
+        EduCourse eduCourse = new EduCourse();
+        BeanUtils.copyProperties(courseInfoQuery,eduCourse);
+        int update = baseMapper.updateById(eduCourse);
+        if(update == 0){
+            throw new SelfException(20001,"修改课程信息失败！");
+        }
+
+        EduCourseDescription eduCourseDescription = new EduCourseDescription();
+        eduCourseDescription.setId(courseInfoQuery.getId());
+        eduCourseDescription.setDescription(courseInfoQuery.getDescription());
+        eduCourseDescriptionService.updateById(eduCourseDescription);
+
+    }
+
+    @Override
+    public CoursePublishQuery getPublishCourseInfoById(String id) {
+//        CoursePublishQuery coursePublishQuery = baseMapper.getPublishCourseInfo(id);
+//        return coursePublishQuery;
+        return null;
     }
 }

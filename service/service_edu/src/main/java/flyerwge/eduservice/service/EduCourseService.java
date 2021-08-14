@@ -3,6 +3,7 @@ package flyerwge.eduservice.service;
 import flyerwge.eduservice.entity.EduCourse;
 import com.baomidou.mybatisplus.extension.service.IService;
 import flyerwge.eduservice.entity.query.CourseInfoQuery;
+import flyerwge.eduservice.entity.query.CoursePublishQuery;
 import flyerwge.eduservice.entity.subject.CourseNum;
 
 import java.util.List;
@@ -25,4 +26,8 @@ public interface EduCourseService extends IService<EduCourse> {
     List<EduCourse> selectTopCourse(Integer nums);
 
     List<CourseNum> getCourseOfSubjectNum();
+
+    void updateCourseInfo(CourseInfoQuery courseInfoQuery);
+
+    CoursePublishQuery getPublishCourseInfoById(String id);
 }

@@ -9,7 +9,8 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @EnableDiscoveryClient //nacos注册
-@EnableFeignClients    //服务调用
+//@EnableFeignClients    //服务调用
+@EnableFeignClients(basePackages = "flyerwge")    //服务调用(如果不指定basePackages，则默认扫描该注解类所在包及其子包)
 public class EduServiceApplication {
     public static void main(String[] args) {
         SpringApplication.run(EduServiceApplication.class,args);
